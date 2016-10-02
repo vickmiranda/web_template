@@ -10,5 +10,9 @@ def home():
 def about():
     return render_template('about.html')
 
+@app.route('/contributions')
+def contributions():
+    return render_template('contributions.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
