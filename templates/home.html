@@ -12,13 +12,20 @@
   </tr>
   <tr>
       {% for n in range(3) %}
+      <tr>
          <td>{{steps[n]}}</td>
+         <td>{{status[n]}}</td>
+         <td>{{elapse[n]}}</td>
+      </tr>
       {% endfor %}
 
   </tr>
 
 </table>
 
+    <form method="post" action="{{url_for('home')}}">
+        <input type="submit" name="start" value="start test">
+    </form>
 
 </div>
 {% endblock %}

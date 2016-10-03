@@ -1,15 +1,21 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 
 app = Flask(__name__)
-test_step = ["Voltage Test", "Running", "10:10"]
-test_state =["Running", "Waiting"]
+test_step = ["Voltage Test", "Current Test", "Frequency Test"]
+test_state =["Running", "Waiting", "Waiting"]
+test_time = ["10.10", "2:20", ""]
+
 
 # Using place holders to pass items to html
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
-    if request == "post":
-        print 'test running'
-    return render_template('home.html', steps=test_step, status=test_state)
+    if request.method == "POST":
+        if request.form['start'] == 'start test':
+            print 'starting tests'
+    return render_template('home.html',
+                           steps=test_step,
+                           status=test_state,
+                           elapse=test_time)
 
 @app.route('/about')
 def about():
