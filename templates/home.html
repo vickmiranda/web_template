@@ -3,5 +3,22 @@
 <div class="jumbo">
     <h2> Welcome to Embedded Test Executive</h2>
 
+<hr>
+<table style="width:100%">
+  <tr>
+    <th>Test</th>
+    <th>Step Run</th>
+     <th> Elapsed time</th>
+  </tr>
+  <tr>
+      {% for n in range(3) %}
+         <td>{{steps[n]}}</td>
+      {% endfor %}
+
+  </tr>
+
+</table>
+
+
 </div>
 {% endblock %}
