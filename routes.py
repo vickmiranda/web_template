@@ -3,7 +3,8 @@ from flask import Flask, render_template, request, url_for
 app = Flask(__name__)
 test_step = ["Voltage Test", "Current Test", "Frequency Test"]
 test_state =["Running", "Waiting", "Waiting"]
-test_time = ["10.10", "2:20", ""]
+test_time = ["10.10", "2:20", "0:00"]
+
 
 
 # Using place holders to pass items to html
@@ -11,6 +12,7 @@ test_time = ["10.10", "2:20", ""]
 def home():
     if request.method == "POST":
         if request.form['start'] == 'start test':
+
             print 'starting tests'
     return render_template('home.html',
                            steps=test_step,
