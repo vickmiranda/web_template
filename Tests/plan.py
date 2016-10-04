@@ -11,7 +11,7 @@ class Plan(object):
     def read(self):
         config = ConfigParser.ConfigParser()
 
-        config.read('my_plan.cfg')
+        config.read('Tests/my_plan.cfg')
         for section in config.sections():
             if section == 'Globals':
                 self.station_name = config.get(section, 'Name')

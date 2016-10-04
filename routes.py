@@ -1,11 +1,10 @@
+from Tests.plan import Plan
 from flask import Flask, render_template, request, url_for
 
 app = Flask(__name__)
-test_step = ["Voltage Test", "Current Test", "Frequency Test"]
-test_state =["Running", "Waiting", "Waiting"]
-test_time = ["10.10", "2:20", "0:00"]
-
-
+test_step = []
+test_state = []
+test_time = []
 
 # Using place holders to pass items to html
 @app.route('/', methods=['GET', 'POST'])
@@ -28,4 +27,9 @@ def contributions():
     return render_template('contributions.html')
 
 if __name__ == '__main__':
+    # Load test plan
+    my_plan = Plan()
+    my_plan.read()
+    test_step = my_plan.plan
+    print test_step
     app.run(debug=True)
