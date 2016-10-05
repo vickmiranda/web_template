@@ -119,3 +119,11 @@ float: right;
 input{
 float: right;
 }
+
+img {
+  max-width:50%;
+  height:auto;
+  position: relative;
+  left: 30px;
+  top: 420px
+}

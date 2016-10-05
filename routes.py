@@ -33,4 +33,4 @@ if __name__ == '__main__':
     my_plan.read()
     test_step = my_plan.plan
     print test_step
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
