@@ -5,7 +5,7 @@ body {
 }
 
 header {
-  background-color: #223f3C;
+  background-color: #99E8EA;
   height: 30px;
   width: 100%;
   opacity: .75;
@@ -16,7 +16,7 @@ header h1.logo {
   text-align: center;
   margin: 15;
   font-size: 1.8em;
-  color: #ffb;
+  color: #66929B;
   text-transform: camelcase;
 }
 
@@ -35,7 +35,7 @@ header h1.logo:hover {
 }
 
 div.jumbo {
-  padding: 60px 0 0px 0;
+  padding: 50px 0 120px 0;
   background-color: #aaeeff;
   -webkit-border-radius: 40px;
      -moz-border-radius: 40px;
@@ -46,6 +46,7 @@ h2 {
   font-size: 1.4em;
   text-align: center;
   letter-spacing: 1px;
+  color: navy
 }
 
 h3 {
@@ -73,14 +74,39 @@ h3 {
   text-decoration: none;
 }
 
+th {
+	font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica,
+	sans-serif;
+	color: #6D929B;
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	border-top: 1px solid #C1DAD7;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	text-align: left;
+	padding: 6px 6px 6px 12px;
+	background: #CAE8EA url(images/bg_header.jpg) no-repeat;
+}
+
 tr{
-  align: center;
+    align: left;
+    font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica,
+    sans-serif;
+    color: #6D929B;
+    border-right: 1px solid #C1DAD7;
+    border-bottom: 1px solid #C1DAD7;
+    border-top: 1px solid #C1DAD7;
+    letter-spacing: 2px;
+    text-transform: camelcase;
+
+    padding: 6px 6px 6px 12px;
+    background: #66AAEA url(images/bg_header.jpg) no-repeat;
 }
 
 td{
 margin-left: 10px;
 text-align: center;
-color: blue;
+color: navy;
 font-size: 1.0em;
 margin: 10;
 }

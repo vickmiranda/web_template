@@ -13,6 +13,7 @@ def home():
         if request.form['start'] == 'start test':
 
             print 'starting tests'
+    print 'rendering page {}'.format(test_step)
     return render_template('home.html',
                            steps=test_step,
                            status=test_state,
