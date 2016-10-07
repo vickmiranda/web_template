@@ -1,83 +1,13 @@
 from Tests.plan import Plan
 from flask import Flask, render_template, request, url_for
-from abc import ABCMeta, abstractmethod
-from collections import defaultdict
+from Tests.tests import RunTests
 
-import re
 
 app = Flask(__name__)
 test_list = []
 test_state = []
 test_time = []
-pattern = '(\d)(-)(\w+)'
 
-class TestPlan(object):
-    def __init__(self):
-        print 'creating the tests'
-        self.test_steps = []
-
-    def register_test(self, test):
-        self.test_steps.append(test)
-
-    def start(self):
-        pass
-
-    def run(self):
-        pass
-
-    def cleanup(self):
-        pass
-
-
-class Test(object):
-    __metaclass__ = ABCMeta
-
-    @abstractmethod
-    def start(self):
-        pass
-
-    @abstractmethod
-    def run(self):
-        pass
-
-    @abstractmethod
-    def cleanup(self):
-        pass
-
-
-class Voltage(Test):
-    def __init__(self, parent_test):
-        self.parent_test = parent_test
-        self.parent_test.register_test(self)
-
-    def start(self):
-        print 'setup voltage'
-
-    def run(self):
-        print 'running voltage test'
-
-    def cleanup(self):
-        print 'close voltage test'
-
-
-class RunTests(object):
-    def __init__(self, all_tests):
-        steps = defaultdict()
-        print 'initialize objects here'
-        plan = TestPlan()
-        for test in all_tests:
-            set = re.search(pattern, test)
-            test_name = set.groups()[2]
-
-            steps[test_name] = eval(test_name)
-            steps[test_name](plan)
-
-    def run_all(self):
-        print 'start running each test'
-        
-
-    def end(self):
-        print 'close instruments'
 
 # Using place holders to pass items to html
 @app.route('/', methods=['GET', 'POST'])
