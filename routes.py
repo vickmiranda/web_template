@@ -16,7 +16,7 @@ def home():
         if request.form['start'] == 'start test':
             # Create the tests
             start = RunTests(test_list)
-    print 'rendering page {}'.format(test_list)
+    print 'all test objects created successfully {}'.format(test_list)
     return render_template('home.html',
                            steps=test_list,
                            status=test_state,
