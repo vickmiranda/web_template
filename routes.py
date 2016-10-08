@@ -1,5 +1,5 @@
 from Tests.plan import Plan
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, redirect
 from Tests.tests import RunTests
 
 
@@ -20,7 +20,13 @@ def home():
     return render_template('home.html',
                            steps=test_list,
                            status=test_state,
-                           elapse=test_time)
+                           elapse=test_time,
+                           name=station_name)
+@app.route('/station/<name>')
+def station_name(name):
+    print station_name
+    print 'station route successful!'
+    return redirect(url_for('home', name=station_name))
 
 @app.route('/about')
 def about():
@@ -35,5 +41,6 @@ if __name__ == '__main__':
     my_plan = Plan()
     my_plan.read()
     test_list = my_plan.plan
-    print test_list
+    station_name = my_plan.station_name
+    print test_list, station_name
     app.run(debug=True, host='0.0.0.0')
