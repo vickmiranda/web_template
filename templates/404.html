@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron">
+        <h2>This page does not exist!! :(</h2>
+        <p> It seems that your are in an non-existing page...</p>
+        {% with errors=get_flashed_messages(category_filter=["error"]) %}
+            {% if errors %}
+                {% for message in errors %}
+                    <div class="alert alert-warning alert-dimissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert">
+
+                        </button>
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+    </div>
+</div>
+
+{% endblock %}

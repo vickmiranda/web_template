@@ -2,7 +2,7 @@
 {% block content %}
 <div class="jumbo">
     <h2> Welcome to Embedded Test Executive</h2>
-    <h3> Station Name {{name}} </h3>
+    <h3> Station Name {{name|reverse|lower}} </h3>
 
 <hr>
 <table style="width:100%">
@@ -12,11 +12,17 @@
      <th> Elapsed time</th>
   </tr>
   <tr>
-      {% for n in range(30) %}
-      <tr>
+      <!-- macro is sort of a function or method -->
+      <!-- it can be imported and place in a diff file -->
+      {% macro testlist(n) %}
          <td>{{steps[n]}}</td>
          <td>{{status[n]}}</td>
          <td>{{elapse[n]}}</td>
+      {% endmacro %}
+
+      {% for n in range(30) %}
+      <tr>
+         {{ testlist(n)}}
       </tr>
       {% endfor %}
 
