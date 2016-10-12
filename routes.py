@@ -2,7 +2,14 @@ from Tests.plan import Plan
 from flask import Flask, render_template, request, url_for, redirect, flash
 from Tests.tests import RunTests
 from flask_moment import Moment, datetime
+from flask.ext.wtf import Form
+from wtforms import StringField, SubmitField
+from wtforms.validators import Required
 
+
+class NameForm(Form):
+    name = StringField('What is your name?', validators=[Required()])
+    submit = SubmitField('Submit')
 
 
 app = Flask(__name__)
@@ -10,6 +17,8 @@ test_list = []
 test_state = []
 test_time = []
 moment = Moment(app)
+app.config['SECRET_KEY'] = 'hard to guess string'
+
 
 # Using place holders to pass items to html
 @app.route('/', methods=['GET', 'POST'])
@@ -35,7 +44,8 @@ def station_name(name):
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    form = Form()
+    return render_template('about.html', form=form)
 
 
 @app.route('/contributions')
