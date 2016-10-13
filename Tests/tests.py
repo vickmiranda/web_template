@@ -51,7 +51,7 @@ class Voltage(Test):
         print 'running voltage test'
 
     def cleanup(self):
-        print 'close voltage test'
+        print 'cleanup voltage test'
 
 
 class Audio(Test):
@@ -66,7 +66,7 @@ class Audio(Test):
         print 'running audio test'
 
     def cleanup(self):
-        print 'close audio test'
+        print 'cleanup audio test'
 
 
 class SelfTest(Test):
@@ -81,7 +81,7 @@ class SelfTest(Test):
         print 'running SelfTest test'
 
     def cleanup(self):
-        print 'close SelfTest test'
+        print 'cleanup SelfTest test'
 
 
 class OOB(Test):
@@ -96,7 +96,7 @@ class OOB(Test):
         print 'running OOB test'
 
     def cleanup(self):
-        print 'close OOB test'
+        print 'cleanup OOB test'
 
 
 class InBand(Test):
@@ -111,7 +111,7 @@ class InBand(Test):
         print 'running InBand test'
 
     def cleanup(self):
-        print 'close InBand test'
+        print 'cleanup InBand test'
 
 
 class DVR(Test):
@@ -126,7 +126,7 @@ class DVR(Test):
         print 'running DVR test'
 
     def cleanup(self):
-        print 'close DVR test'
+        print 'cleanup DVR test'
 
 
 class Sata(Test):
@@ -141,7 +141,7 @@ class Sata(Test):
         print 'running Sata test'
 
     def cleanup(self):
-        print 'close Sata test'
+        print 'cleanup Sata test'
 
 
 class Recording(Test):
@@ -156,7 +156,7 @@ class Recording(Test):
         print 'running Recording test'
 
     def cleanup(self):
-        print 'close Recording test'
+        print 'cleanup Recording test'
 
 
 class Diagnostics(Test):
@@ -171,7 +171,7 @@ class Diagnostics(Test):
         print 'running Diagnostics test'
 
     def cleanup(self):
-        print 'close Diagnostics test'
+        print 'cleanup Diagnostics test'
 
 
 class HDD(Test):
@@ -186,23 +186,29 @@ class HDD(Test):
         print 'running HDD test'
 
     def cleanup(self):
-        print 'close HDD test'
+        print 'cleanup HDD test'
 
 
 class RunTests(object):
     def __init__(self, all_tests):
-        steps = defaultdict()
-        print 'initialize objects here'
+        self.step_name = defaultdict()
+        self.step_list = []
+
+        # getting test plan name and init objects
         plan = TestPlan()
         for test in all_tests:
             set = re.search(pattern, test)
             test_name = set.groups()[2]
 
-            steps[test_name] = eval(test_name)
-            steps[test_name](plan)
+            self.step_name[test_name] = eval(test_name)
+            self.step_list.append(self.step_name[test_name](plan))
 
-    def run_all(self):
+    def run_tests(self):
         print 'start running each test'
+        for step in self.step_list:
+            step.start()
+            step.run()
+            step.cleanup()
 
     def end(self):
         print 'close instruments'

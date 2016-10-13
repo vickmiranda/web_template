@@ -23,10 +23,7 @@ app.config['SECRET_KEY'] = 'hard to guess string'
 # Using place holders to pass items to html
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    if request.method == "POST":
-        if request.form['start'] == 'start test':
-            # Create the tests
-            start = RunTests(test_list)
+
     print 'all test objects created successfully {}'.format(test_list)
     return render_template('home.html',
                            steps=test_list,
@@ -35,11 +32,17 @@ def home():
                            name=station_name)
 
 
-@app.route('/station/<name>')
-def station_name(name):
-    print station_name
-    print 'station route successful!'
-    return redirect(url_for('home', name=station_name))
+@app.route('/start', methods=['GET', 'POST'])
+def start():
+    print 'test starting'
+    if request.method == "POST":
+        if request.form['begin'] == 'starting':
+            # Create the tests
+            start = RunTests(test_list)
+            start.run_tests()
+            start.end()
+
+    return redirect(url_for('home'))
 
 
 @app.route('/about')
